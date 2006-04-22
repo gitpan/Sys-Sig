@@ -50,6 +50,18 @@ SYNOPSIS
       my $term = &Sys::Sig::term;
       my $term = Sys::Sig::term();
 
+  PRINT SIGNALS VALUES
+
+    Print an alphabetical list of all signals to the FILEHANDLE or STDOUT if
+    no filehandle is specified.
+
+      Sys::Sig::print(*FILEHANDLE);
+
+    Print a numeric sorted list of all signals to the FILEHANDLE or STDOUT
+    if no filehandle is specified.
+
+      Sys::Sig::printN(*FILEHANDLE);
+
 AUTHOR
     Michael Robinton <michael@bizsystems.com>
 

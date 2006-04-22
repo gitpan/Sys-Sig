@@ -7,7 +7,7 @@ use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
 require Exporter;
 
-$VERSION = do { my @r = (q$Revision: 0.01 $ =~ /\d+/g); sprintf "%d."."%02d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 0.02 $ =~ /\d+/g); sprintf "%d."."%02d" x $#r, @r };
 
 @ISA = qw(Exporter);
 
@@ -34,6 +34,25 @@ sub new {
   my $self  = \$class;
   bless ($self, $class);
   return $self;
+}
+
+sub print {
+  local *FH = shift || 'STDOUT';
+  my $fh = *FH;
+  foreach (sort keys %signal) {
+    print $fh $_, "\t=> $signal{$_}\n";
+  }
+}
+
+sub printN {
+  local *FH = shift || 'STDOUT';
+  my $fh = *FH;
+  foreach(sort {
+	$signal{$a} <=> $signal{$b}
+		||
+	$a cmp $b } keys %signal) {
+    print $fh $_, "\t=> $signal{$_}\n";
+  }
 }
 
 =head1 NAME
@@ -90,6 +109,18 @@ or, case insensitive for full package function call
 
   my $term = &Sys::Sig::term;
   my $term = Sys::Sig::term();
+
+=head2 PRINT SIGNALS VALUES
+
+Print an alphabetical list of all signals to the FILEHANDLE or
+STDOUT if no filehandle is specified.
+
+  Sys::Sig::print(*FILEHANDLE);
+
+Print a numeric sorted list of all signals to the FILEHANDLE or          
+STDOUT if no filehandle is specified.
+
+  Sys::Sig::printN(*FILEHANDLE);
 
 =head1 AUTHOR
 
