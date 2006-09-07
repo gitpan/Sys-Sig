@@ -1,5 +1,8 @@
 Revision history for Perl extension Sys::Sig
 
+0.03  Thu Sep  7 16:27:41 PDT 2006
+   test t/signals.t so that it works in perl 5.053
+
 0.02  Sat Apr 22 15:43:52 PDT 2006
 	add 'print' function
 

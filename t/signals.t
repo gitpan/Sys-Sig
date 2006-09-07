@@ -34,9 +34,9 @@ my %known = qw(
 );
 
 ## test 2 - 6
-foreach my $sig (sort keys %known) {
+foreach $sig (sort keys %known) {
   print "got: $_, exp: $known{$sig} for ", uc $sig, "\nnot "
-	unless ($_ = Sys::Sig->$sig) == $known{$sig};
+	unless ($_ = eval "Sys::Sig->$sig") == $known{$sig};
   &ok;
 }
 
@@ -53,7 +53,7 @@ print "expected 'die', got: $_ for undefined symbol BLEEP\nnot "
 my $Sig = new Sys::Sig;
 foreach my $sig (sort keys %known) {
   print "got: $_, exp: $known{$sig} for ", uc $sig, "\nnot "
-	unless ($_ = $Sig->$sig) == $known{$sig};
+	unless ($_ = eval "\$Sig->$sig") == $known{$sig};
   &ok;
 }
 
