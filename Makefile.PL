@@ -1,6 +1,10 @@
 use ExtUtils::MakeMaker;
 use Config;
 
+unless (exists $Config{sig_name} && exists $Config{sig_num}) {
+  die "SIGNALS missing or unsupported on this OS";
+}
+
 my $pkg = 'Sys::Sig';
 $pkg =~ /[^:]+$/;
 my $module = $& .'.pm';
