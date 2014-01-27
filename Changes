@@ -1,5 +1,8 @@
 Revision history for Perl extension Sys::Sig
 
+0.05  Mon Jan 27 11:59:58 PST 2014
+        modify Makefile.PL to bypass missing 'pod2text'
+
 0.04  Mon Oct  6 13:50:51 PDT 2008
 	add build abort for OS's that do not support signals
 
